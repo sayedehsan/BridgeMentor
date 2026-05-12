@@ -1,5 +1,11 @@
 from flask import Flask
+from db import engine, Base
+import model
+
 app = Flask(__name__)
+
+# Create database tables for all registered models.
+Base.metadata.create_all(bind=engine)
 
 @app.route("/")
 def home():
